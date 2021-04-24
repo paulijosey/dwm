@@ -55,9 +55,9 @@ static const Rule rules[] = {
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
 	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
 	/* custom setup: teams: e.g right monito tag 2 */
-	{ NULL,		NULL,       "Microsoft Teams",	1 << 1,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "Signal",		1 << 0,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "Code",		1 << 1,		0,	0,	0, 	0 },
+	{ NULL,		NULL,       "Microsoft Teams",	1 << 1,		0,	0,	0, 	0 },
+	{ NULL,		NULL,       "Signal",		1 << 0,		0,	0,	0, 	0 },
+	{ NULL,		NULL,       "Code",		1 << 1,		0,	0,	0, 	1 },
 };
 
 /* layout(s) */
