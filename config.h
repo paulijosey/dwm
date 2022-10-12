@@ -59,7 +59,8 @@ static const Rule rules[] = {
 	{ NULL,		NULL,       "Signal",			1 << 0,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "WhatsApp",			1 << 0,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Code",				1 << 1,		0,	0,	0, 	0 },
-	{ NULL,		NULL,       "Nextcloud",		1 << 8,		0,	0,	0, 	0 },
+	{ NULL,		NULL,       "Nextcloud",		1 << 8,		0,	0,	0, 	1 },
+
 };
 
 /* layout(s) */
