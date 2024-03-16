@@ -7,12 +7,12 @@
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
-static unsigned int gappih    = 20;       /* horiz inner gap between windows */
-static unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static unsigned int gappih    = 5;       /* horiz inner gap between windows */
+static unsigned int gappiv    = 5;       /* vert inner gap between windows */
+static unsigned int gappoh    = 5;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov    = 5;       /* vert outer gap between windows and screen edge */
 static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
@@ -20,8 +20,8 @@ static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#770000";
-static char selbgcolor[]            = "#005577";
+static char selbordercolor[]        = "#bc56ab";
+static char selbgcolor[]            = "#bc56ab";
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -43,25 +43,50 @@ static Sp scratchpads[] = {
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
+static const MonitorRule monrules[] = {
+	/* monitor  tag  layout  mfact  nmaster  showbar  topbar */
+	{  1,       1,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
+	{  1,       2,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
+	{  0,       4,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
+	{  -1,      -1,  0,      -1,    -1,      -1,      -1     }, // default
+};
+
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-	{ "Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
 	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
 	/* custom setup: teams: e.g right monito tag 2 */
-	{ NULL,		NULL,       "Signal",		1 << 0,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "WhatsApp",		1 << 0,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "Microsoft Teams",	1 << 1,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "Brave",		1 << 2,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "Code",		1 << 1,		0,	0,	0, 	0 },
-	{ NULL,		NULL,       "Nextcloud",	1 << 8,		0,	0,	0, 	1 },
-	{ NULL,		NULL,       "Steam",		1 << 6,		0,	0,	0, 	0 },
+	// { NULL,		NULL,       "Microsoft Teams",		1 << 1,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "Signal",			1 << 0,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "WhatsApp",			1 << 0,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "Skype",			1 << 1,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "Slack",			1 << 1,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "YouTube Music",		1 << 7,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "Feishin",			1 << 7,		0,	0,	0, 	2 },
+	// { NULL,		NULL,       "Brave",			1 << 2,		0,	0,	0, 	0 },
+	// { NULL,		NULL,       "Code",			1 << 3,		0,	0,	0, 	1 },
+	// { NULL,		NULL,       "Nextcloud",		1 << 8,		0,	0,	0, 	1 },
+
+	{ NULL,		NULL,       "Signal",				1 << 0,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Discord",				1 << 0,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "WhatsApp",				1 << 0,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Skype",				1 << 1,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Slack",				1 << 1,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "YouTube Music",			1 << 7,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Feishin",				1 << 7,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Brave",				1 << 2,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Code",				1 << 3,		0,	0,	0, 	2 },
+	{ "draw.io",	NULL,       NULL,				1 << 0,		0,	0,	0, 	2 },
+	{ NULL,		NULL,       "Nextcloud",			1 << 8,		0,	0,	0, 	2 },
+	{ NULL,		NULL,       "KeePassXC",			1 << 8,		0,	0,	0, 	2 },
+
 };
 
 /* layout(s) */
@@ -193,9 +218,9 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
 
 	{ MODKEY,			XK_a,		togglegaps,	{0} },
-	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },
+	{ MODKEY|ShiftMask,		XK_a,		spawn,		SHCMD("sh ~/.screenlayout/ETH_3.sh") },
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
-	{ MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("screenTimeOut -t") },
+	{ MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("screenTimeout -t") },
 	{ MODKEY,			XK_d,		spawn,          SHCMD("dmenu_run") },
 	/* { MODKEY,			XK_d,		spawn,		SHCMD("") } }, */
 	{ MODKEY,			XK_f,		togglefullscr,	{0} },
@@ -203,10 +228,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_g,		shiftview,	{ .i = -1 } },
 	{ MODKEY|ShiftMask,		XK_g,		shifttag,	{ .i = -1 } },
 	{ MODKEY,			XK_h,		setmfact,	{.f = -0.05} },
-	{ MODKEY|ShiftMask,		XK_h,		focusmon,	{.i = -1 } },
+	{ MODKEY|ShiftMask,		XK_h,		focusmon,	{.i = +1 } },
 	/* J and K are automatically bound above in STACKEYS */
 	{ MODKEY,			XK_l,		setmfact,      	{.f = +0.05} },
-	{ MODKEY|ShiftMask,		XK_l,		focusmon,	{.i = +1 } },
+	{ MODKEY|ShiftMask,		XK_l,		focusmon,	{.i = -1 } },
 	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
 	{ MODKEY|ShiftMask,		XK_semicolon,	shifttag,	{ .i = 1 } },
 	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
@@ -232,10 +257,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_period,	spawn,		SHCMD("mpc next") },
 	{ MODKEY|ShiftMask,		XK_period,	spawn,		SHCMD("mpc repeat") },
 
-	{ MODKEY,			XK_Left,	focusmon,	{.i = -1 } },
-	{ MODKEY|ShiftMask,		XK_Left,	tagmon,		{.i = -1 } },
-	{ MODKEY,			XK_Right,	focusmon,	{.i = +1 } },
-	{ MODKEY|ShiftMask,		XK_Right,	tagmon,		{.i = +1 } },
+	{ MODKEY,			XK_Left,	focusmon,	{.i = +1 } },
+	{ MODKEY|ShiftMask,		XK_Left,	tagmon,		{.i = +1 } },
+	{ MODKEY,			XK_Right,	focusmon,	{.i = -1 } },
+	{ MODKEY|ShiftMask,		XK_Right,	tagmon,		{.i = -1 } },
 
 	{ MODKEY,			XK_Page_Up,	shiftview,	{ .i = -1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Up,	shifttag,	{ .i = -1 } },
@@ -291,8 +316,8 @@ static Key keys[] = {
 	{ 0, XF86XK_TouchpadToggle,	spawn,		SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOff,	spawn,		SHCMD("synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOn,		spawn,		SHCMD("synclient TouchpadOff=0") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 15") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("blight set +10%") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("blight set -10%") },
 
 	/* { MODKEY|Mod4Mask,              XK_h,      incrgaps,       {.i = +1 } }, */
 	/* { MODKEY|Mod4Mask,              XK_l,      incrgaps,       {.i = -1 } }, */
