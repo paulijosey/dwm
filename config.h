@@ -55,10 +55,13 @@ static const Rule rules[] = {
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
 	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
 	/* custom setup: teams: e.g right monito tag 2 */
-	{ NULL,		NULL,       "Microsoft Teams",	1 << 1,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Signal",		1 << 0,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "WhatsApp",		1 << 0,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Microsoft Teams",	1 << 1,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Brave",		1 << 2,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Code",		1 << 1,		0,	0,	0, 	0 },
+	{ NULL,		NULL,       "Nextcloud",	1 << 8,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Steam",		1 << 6,		0,	0,	0, 	0 },
 };
 
 /* layout(s) */
