@@ -81,7 +81,7 @@ static const Rule rules[] = {
 	{ NULL,		NULL,       "Slack",				1 << 1,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Mozilla Thunderbird",	1 << 2,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "YouTube Music",		1 << 7,		0,	0,	0, 	1 },
-	{ "Feishin",NULL,       "Feishin",				1 << 7,		0,	0,	0, 	1 },
+	{ NULL,		"feishin",  NULL,					1 << 7,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Brave",				1 << 2,		0,	0,	0, 	0 },
 	{ NULL,		NULL,       "Code",					1 << 3,		0,	0,	0, 	2 },
 	{ "draw.io",NULL,		NULL,					1 << 0,		0,	0,	0, 	2 },
