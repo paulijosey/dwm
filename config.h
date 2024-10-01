@@ -79,6 +79,7 @@ static const Rule rules[] = {
 	{ NULL,		NULL,       "WhatsApp",				1 << 0,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Skype",				1 << 1,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Slack",				1 << 1,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Element",				1 << 1,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Mozilla Thunderbird",	1 << 2,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "YouTube Music",		1 << 7,		0,	0,	0, 	1 },
 	{ NULL,		"feishin",  NULL,					1 << 7,		0,	0,	0, 	1 },
@@ -225,7 +226,7 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
 
 	{ MODKEY,			XK_a,		togglegaps,	{0} },
-	{ MODKEY|ShiftMask,		XK_a,		spawn,		SHCMD("sh ~/.screenlayout/ETH_3.sh") },
+	{ MODKEY|ShiftMask,		XK_a,		spawn,		SHCMD("restart_dwm") },
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
 	{ MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("screenTimeout -t") },
 	{ MODKEY,			XK_d,		spawn,          SHCMD("dmenu_run") },
