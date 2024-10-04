@@ -47,6 +47,7 @@ static const MonitorRule monrules[] = {
 	/* monitor  tag  layout  mfact  nmaster  showbar  topbar */
 	{  1,       1,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
 	{  1,       2,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
+	{  1,       4,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
 	{  2,       4,   5,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
 	{  -1,      -1,  0,      -1,    -1,      -1,      -1     }, // default
 };
@@ -80,6 +81,7 @@ static const Rule rules[] = {
 	{ NULL,		NULL,       "Skype",				1 << 1,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Slack",				1 << 1,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Element",				1 << 1,		0,	0,	0, 	1 },
+	{ NULL,		NULL,       "Pupil Capture",		1 << 3,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "Mozilla Thunderbird",	1 << 2,		0,	0,	0, 	1 },
 	{ NULL,		NULL,       "YouTube Music",		1 << 7,		0,	0,	0, 	1 },
 	{ NULL,		"feishin",  NULL,					1 << 7,		0,	0,	0, 	1 },
